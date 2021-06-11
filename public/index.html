@@ -1,17 +1,44 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+  </noscript>
+  <div style="height: 200vh;"></div>
+  <am-fomo id="30"></am-fomo>
+  <!-- built files will be auto injected -->
+  <script>
+    var a = {
+      type: "signup_bonus",
+      id_template: 1,
+      show_screen: 'common',
+      template: {
+        settings: {
+          bg_image: "assets/img/email_assets/campaign_1.png",
+          bg_color: "#6C9BDC",
+          btn_color: "#a41111",
+          title: "Sign up and explore exiciting deals during this festive season",
+          description: "",
+          btn_text: "Sign up now",
+          couponTitle: "Here is your Coupon",
+          congrats: "Congratulations !!"
+        }
+      }
+    }
+    // document.querySelector('am-fomo').setAttribute('preview', JSON.stringify(a))
+  </script>
+</body>
+
 </html>
