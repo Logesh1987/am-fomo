@@ -111,58 +111,67 @@ export default {
       setTimeout(() => (this.opened = true), this.data.display.seconds);
     },
     showAfterScroll: function () {
-      const docHeight = document.documentElement.getBoundingClientRect().height;
-      const winHeight = window.innerHeight;
-      const checkScroll = () => {
-        const scrollPercent = window.pageYOffset / (docHeight - winHeight);
-        if (scrollPercent * 100 > this.data.display.scroll_percentage) {
-          this.opened = true;
-          window.removeEventListener("scroll", checkScroll);
-        }
-      };
-      window.addEventListener("scroll", checkScroll);
+      if(this.data.display.scroll_percentage > 0) {
+        const docHeight = document.documentElement.getBoundingClientRect().height;
+        const winHeight = window.innerHeight;
+        const checkScroll = () => {
+          const scrollPercent = window.pageYOffset / (docHeight - winHeight);
+          if (scrollPercent * 100 > this.data.display.scroll_percentage) {
+            this.showAfterDelay()
+            window.removeEventListener("scroll", checkScroll);
+          }
+        };
+        window.addEventListener("scroll", checkScroll);
+      } else {
+        this.showAfterDelay()
+      }
     },
     showOnlyOnFirst: function () {
-      if (window.localStorage.get("fomo_first_visit") != 1) {
-        window.localStorage.set("fomo_first_visit", 1);
-        this.opened = true;
+      if (window.localStorage.getItem("fomo_first_visit") != 1) {
+        window.localStorage.setItem("fomo_first_visit", 1);
+        this.showAfterScroll()
       }
     },
     showOnlyTo: function (type) {
       if (type == "all") {
-        //  move to next
+        this.showOnPages();
       } else if (type == "signed" && this.data.user.id) {
-        //  move to next
+        this.showOnPages();
       } else if (type == "unsigned" && this.data.user == null) {
-        //  move to next
+        this.showOnPages();
+      } else {
+        console.warn('am-fomo blocked based on user')
       }
     },
     showOnPages: function () {
       if(this.data.display.show_on_home_page) {
         let currentUrl = window.location.href;
         currentUrl = currentUrl.replace(window.location.search, '');
-        let siteDomain = currentUrl; ///Hence we diodnt get the config yet
+        let siteDomain = currentUrl; ///Hence we didnt get the config yet
 
          if (currentUrl == siteDomain) {
-          //  move to next
+          this.showOnCountries();
          }
       } else if(`${this.data.display.show_on_pages}`.length){
-        // move to next
+        this.showOnCountries();
+      } else {
+        this.showOnCountries();
+        console.warn('am-fomo blocked based on pages')
       }
     },
-    showOnCountries: function (allowed_countries) {
-      if(allowed_countries.length) {
-        const ip_country = window.localStorage.get("gr_ip_country");
+    showOnCountries: function () {
+      if(this.data.display.allowed_countries.length) {
+        const ip_country = window.localStorage.getItem("gr_ip_country");
         if (ip_country != null) {
-          allowed_countries.forEach(function (v, k) {
-            allowed_countries[k] = v.toLowerCase();
+          this.data.display.allowed_countries.forEach(function (v, k) {
+            this.data.display.allowed_countries[k] = v.toLowerCase();
           });
-          if (allowed_countries.indexOf(ip_country) != -1) {
-            //  move to next
+          if (this.data.display.allowed_countries.indexOf(ip_country) != -1) {
+            this.showOnlyOnFirst()
           }
         }
       } else {
-        //  move to next
+        this.showOnlyOnFirst()
       }
     },
     openFomo: function () {
@@ -192,15 +201,7 @@ export default {
           this.data = data.attributes;
           this.user = data.user;
           this.setPositioning();
-          if (this.data.display.visible_to == "all") {
-            this.openFomo();
-          } else if (this.data.display.visible_to == "signed" && data.user.id) {
-            this.openFomo();
-          } else if (
-            this.data.display.visible_to == "unsigned" &&
-            data.user == null
-          )
-            this.openFomo();
+          this.showOnlyTo(this.data.display.visible_to);
         });
     }
   },
