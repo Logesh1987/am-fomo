@@ -567,7 +567,7 @@ __webpack_require__.r(__webpack_exports__);
 
 if (typeof window !== 'undefined') {
   var currentScript = window.document.currentScript
-  if (Object({"NODE_ENV":"production","BASE_URL":""}).NEED_CURRENTSCRIPT_POLYFILL) {
+  if (Object({"NODE_ENV":"production","BASE_URL":"https://logesh1987.github.io/am-fomo/dist/"}).NEED_CURRENTSCRIPT_POLYFILL) {
     var getCurrentScript = __webpack_require__("8875")
     currentScript = getCurrentScript()
 

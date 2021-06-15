@@ -18,5 +18,5 @@ module.exports = {
   chainWebpack: (config) => {
     enableShadowCss(config);
   },
-  publicPath: ''
+  publicPath: 'https://logesh1987.github.io/am-fomo/dist/'
 };
