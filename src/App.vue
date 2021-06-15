@@ -42,7 +42,6 @@ export default {
   },
   computed: {
     parsedData: function () {
-      console.log(this.preview);
       if (this.previewMode) return JSON.parse(this.preview);
       else return this.data;
     },
@@ -127,8 +126,14 @@ export default {
       }
     },
     showOnlyOnFirst: function () {
-      if (window.localStorage.getItem("fomo_first_visit") != 1) {
-        window.localStorage.setItem("fomo_first_visit", 1);
+      if(this.data.display.show_on_first_visit) {
+        if (window.localStorage.getItem("fomo_first_visit") != 1) {
+          window.localStorage.setItem("fomo_first_visit", 1);
+          this.showAfterScroll()
+        } else {
+          console.warn('am-fomo blocked based on first visit flag')
+        }
+      } else {
         this.showAfterScroll()
       }
     },
@@ -173,18 +178,7 @@ export default {
       } else {
         this.showOnlyOnFirst()
       }
-    },
-    openFomo: function () {
-      if (this.data.display.scroll_percentage) {
-        this.showAfterScroll();
-      } else if (this.data.display.seconds) {
-        this.showAfterDelay();
-      } else if (this.show_on_first_visit) {
-        this.showOnlyOnFirst();
-      } else {
-        this.opened = true;
-      }
-    },
+    }
   },
   mounted: function () {
     if (this.preview) {
