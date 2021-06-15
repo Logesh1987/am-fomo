@@ -129,13 +129,13 @@ export default {
   opacity: 0;
   pointer-events: none;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup {
+.amfm__fomoSignup {
   opacity: 1;
   pointer-events: all;
   -webkit-animation: growBig 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.28) both;
   animation: growBig 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.28) both;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup:before {
+.amfm__fomoSignup:before {
   -webkit-animation: gradientRotate 1s ease 0.75s both;
   animation: gradientRotate 1s ease 0.75s both;
 }
@@ -210,27 +210,27 @@ export default {
   text-align: center;
   line-height: 1.3;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > div {
+.amfm__fomoSignup_step > div {
   -webkit-animation: slideUp 0.3s ease-out both;
   animation: slideUp 0.3s ease-out both;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > div:nth-child(1) {
+.amfm__fomoSignup_step > div:nth-child(1) {
   -webkit-animation-delay: 0.75s;
   animation-delay: 0.75s;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > div:nth-child(2) {
+.amfm__fomoSignup_step > div:nth-child(2) {
   -webkit-animation-delay: 0.82s;
   animation-delay: 0.82s;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > div:nth-child(3) {
+.amfm__fomoSignup_step > div:nth-child(3) {
   -webkit-animation-delay: 0.9s;
   animation-delay: 0.9s;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > div:nth-child(4) {
+.amfm__fomoSignup_step > div:nth-child(4) {
   -webkit-animation-delay: 0.97s;
   animation-delay: 0.97s;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > div:nth-child(5) {
+.amfm__fomoSignup_step > div:nth-child(5) {
   -webkit-animation-delay: 1.05s;
   animation-delay: 1.05s;
 }
@@ -292,15 +292,15 @@ export default {
   -ms-flex-pack: center;
   justify-content: center;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_content {
+.amfm__fomoSignup_content {
   -webkit-animation: smallCircle 0.35s ease-out 0.6s both;
   animation: smallCircle 0.35s ease-out 0.6s both;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_content > div {
+.amfm__fomoSignup_content > div {
   -webkit-animation: keepMoving 0.75s linear 1.5s infinite both;
   animation: keepMoving 0.75s linear 1.5s infinite both;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_content > div span {
+.amfm__fomoSignup_content > div span {
   -webkit-animation: justFade 0.35s linear 0.8s both;
   animation: justFade 0.35s linear 0.8s both;
 }
@@ -477,7 +477,7 @@ export default {
   display: block;
   width: 64px;
   height: 44px;
-  background: red;
+  background:  url('https://maverickmav.org/ui/fomo-template/images/star-sprite1.png') 0 0 no-repeat;
   -webkit-animation: starSprite 1.4s steps(28) both;
   animation: starSprite 1.4s steps(28) both;
 }

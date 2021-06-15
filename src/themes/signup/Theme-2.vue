@@ -103,7 +103,7 @@ export default {
   opacity: 0;
   pointer-events: none;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup {
+.amfm__fomoSignup {
   opacity: 1;
   pointer-events: all;
   -webkit-animation: slideLeft 0.5s ease-in-out 0.25s both;
@@ -161,7 +161,7 @@ export default {
   display: -ms-flexbox;
   display: flex;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_Close {
+.amfm__fomoSignup_Close {
   -webkit-animation: justFade 0.5s linear 1s both;
   animation: justFade 0.5s linear 1s both;
 }
@@ -203,27 +203,27 @@ export default {
   width: 400px;
   padding-right: 140px;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > * {
+.amfm__fomoSignup_step > * {
   -webkit-animation: slideUp 0.3s ease-out both;
   animation: slideUp 0.3s ease-out both;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > :nth-child(1) {
+.amfm__fomoSignup_step > :nth-child(1) {
   -webkit-animation-delay: 0.75s;
   animation-delay: 0.75s;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > :nth-child(2) {
+.amfm__fomoSignup_step > :nth-child(2) {
   -webkit-animation-delay: 0.82s;
   animation-delay: 0.82s;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > :nth-child(3) {
+.amfm__fomoSignup_step > :nth-child(3) {
   -webkit-animation-delay: 0.9s;
   animation-delay: 0.9s;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > :nth-child(4) {
+.amfm__fomoSignup_step > :nth-child(4) {
   -webkit-animation-delay: 0.97s;
   animation-delay: 0.97s;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > :nth-child(5) {
+.amfm__fomoSignup_step > :nth-child(5) {
   -webkit-animation-delay: 1.05s;
   animation-delay: 1.05s;
 }
@@ -415,7 +415,7 @@ export default {
   display: block;
   width: 24px;
   height: 24px;
-  background: #f00;
+  background: url('https://maverickmav.org/ui/fomo-template/images/particle2.png') 0 0 no-repeat;
   -webkit-animation: particle1 0.5s steps(4) 2 both;
   animation: particle1 0.5s steps(4) 2 both;
 }
@@ -430,8 +430,8 @@ export default {
   -webkit-transform: scale(0.8);
   transform: scale(0.8);
 }
-.amfm__fomoSignup_particles span:nth-child(2) i:before {
-  background: #000;
+.amfm__fomoSignup_particles span:nth-child(2) i:before {  
+  background-image: url('https://maverickmav.org/ui/fomo-template/images/particle3.png');
 }
 .amfm__fomoSignup_particles span:nth-child(2) i,
 .amfm__fomoSignup_particles span:nth-child(2) i:before {
@@ -456,7 +456,7 @@ export default {
   transform: scale(1.1);
 }
 .amfm__fomoSignup_particles span:nth-child(4) i:before {
-  background-image: #000;
+  background-image: url('https://maverickmav.org/ui/fomo-template/images/particle3.png');
 }
 .amfm__fomoSignup_particles span:nth-child(4) i,
 .amfm__fomoSignup_particles span:nth-child(4) i:before {

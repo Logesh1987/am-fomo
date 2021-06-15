@@ -95,7 +95,7 @@ export default {
   transform-origin: center center;
   width: 100%;
   height: 100%;
-  // background: url(../images/sharp-pattern.png) bottom center no-repeat;
+  background: url(https://maverickmav.org/ui/fomo-template/images/sharp-pattern.png) bottom center no-repeat;
   background-size: cover;
 }
 @-webkit-keyframes growBig {
@@ -170,13 +170,13 @@ export default {
   opacity: 0;
   pointer-events: none;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup {
+.amfm__fomoSignup {
   opacity: 1;
   pointer-events: all;
   -webkit-animation: growBig 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.28) both;
   animation: growBig 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.28) both;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup:before {
+.amfm__fomoSignup:before {
   -webkit-animation: shrinkIn 0.75s ease 0.5s both;
   animation: shrinkIn 0.75s ease 0.5s both;
 }
@@ -233,7 +233,7 @@ export default {
   display: -ms-flexbox;
   display: flex;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_Close {
+.amfm__fomoSignup_Close {
   -webkit-animation: justFade 0.5s linear 1s both;
   animation: justFade 0.5s linear 1s both;
 }
@@ -244,27 +244,27 @@ export default {
   width: 100%;
   text-align: center;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > * {
+.amfm__fomoSignup_step > * {
   -webkit-animation: slideUp 0.3s ease-out 1s both;
   animation: slideUp 0.3s ease-out 1s both;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > :nth-child(1) {
+.amfm__fomoSignup_step > :nth-child(1) {
   -webkit-animation-delay: 1.1s;
   animation-delay: 1.1s;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > :nth-child(2) {
+.amfm__fomoSignup_step > :nth-child(2) {
   -webkit-animation-delay: 1.2s;
   animation-delay: 1.2s;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > :nth-child(3) {
+.amfm__fomoSignup_step > :nth-child(3) {
   -webkit-animation-delay: 1.3s;
   animation-delay: 1.3s;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > :nth-child(4) {
+.amfm__fomoSignup_step > :nth-child(4) {
   -webkit-animation-delay: 1.4s;
   animation-delay: 1.4s;
 }
-:root([display="modal"][opened]) .amfm__fomoSignup_step > :nth-child(5) {
+.amfm__fomoSignup_step > :nth-child(5) {
   -webkit-animation-delay: 1.5s;
   animation-delay: 1.5s;
 }
@@ -426,8 +426,8 @@ export default {
   content: "";
   display: block;
   width: 64px;
-  height: 44px;
-  // background: url(../images/star-sprite1.png) 0 0 no-repeat;
+  height: 44px;  
+  background:  url('https://maverickmav.org/ui/fomo-template/images/star-sprite1.png') 0 0 no-repeat;
   -webkit-animation: starSprite 1.4s steps(28) both;
   animation: starSprite 1.4s steps(28) both;
 }
