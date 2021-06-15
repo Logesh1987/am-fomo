@@ -18,4 +18,5 @@ module.exports = {
   chainWebpack: (config) => {
     enableShadowCss(config);
   },
+  publicPath: ''
 };
