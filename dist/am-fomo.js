@@ -548,7 +548,7 @@ function addStyle (obj /* StyleObjectPart */, shadowRoot) {
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__("24fb");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".am-fomo-wrapper{position:fixed}.am-fomo-wrapper.am-preview{position:absolute;left:0;top:0}.am-fomo-wrapper.am-bottom-left{left:0;bottom:0}.am-fomo-wrapper.am-bottom-center{left:50%;bottom:0;transform:translateX(-50%)}.am-fomo-wrapper.am-bottom-right{right:0;bottom:0}.am-fomo-wrapper.am-top-left{left:0;top:0}.am-fomo-wrapper.am-top-center{left:50%;top:0;transform:translateX(-50%)}.am-fomo-wrapper.am-top-right{right:0;top:0}.am-fomo-wrapper.am-mid-left{left:0;top:50%;transform:translateY(-50%)}.am-fomo-wrapper.am-mid-right{right:0;top:50%;transform:translateY(-50%)}.am-fomo-wrapper .ql-size-small{font-size:.7em}", ""]);
+exports.push([module.i, ".am-fomo-wrapper{position:fixed}.am-fomo-wrapper.am-preview{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}.am-fomo-wrapper.am-bottom-left{left:0;bottom:0}.am-fomo-wrapper.am-bottom-center{left:50%;bottom:0;transform:translateX(-50%)}.am-fomo-wrapper.am-bottom-right{right:0;bottom:0}.am-fomo-wrapper.am-top-left{left:0;top:0}.am-fomo-wrapper.am-top-center{left:50%;top:0;transform:translateX(-50%)}.am-fomo-wrapper.am-top-right{right:0;top:0}.am-fomo-wrapper.am-mid-left{left:0;top:50%;transform:translateY(-50%)}.am-fomo-wrapper.am-mid-right{right:0;top:50%;transform:translateY(-50%)}.am-fomo-wrapper .ql-size-small{font-size:.7em}", ""]);
 // Exports
 module.exports = exports;
 
@@ -868,12 +868,12 @@ var addStylesShadow = __webpack_require__("35d6");
 // EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 var componentNormalizer = __webpack_require__("2877");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1bedbed1-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=template&id=3281de22&shadow
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1bedbed1-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=template&id=535907d3&shadow
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.opened)?_c('div',[_c('div',{class:("am-fomo-wrapper am-" + (_vm.parsedData.display ? _vm.parsedData.display.position : 'preview')),style:(_vm.positioning)},[(_vm.fomoType == 'signup_bonus')?_c('FomoSignup',{attrs:{"close":_vm.closeFomo,"details":_vm.parsedData,"previewMode":_vm.previewMode}}):_vm._e()],1)]):_vm._e()}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=3281de22&shadow
+// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=535907d3&shadow
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=script&lang=js&shadow
 //
@@ -913,12 +913,12 @@ const FomoSignup = () => __webpack_require__.e(/* import() | signup */ 1).then(_
       fomoType: null,
       opened: false,
       previewMode: false,
-      positioning: null
+      positioning: null,
+      user: null
     };
   },
   computed: {
     parsedData: function () {
-      console.log(this.preview);
       if (this.previewMode) return JSON.parse(this.preview);else return this.data;
     }
   },
@@ -993,27 +993,78 @@ const FomoSignup = () => __webpack_require__.e(/* import() | signup */ 1).then(_
       setTimeout(() => this.opened = true, this.data.display.seconds);
     },
     showAfterScroll: function () {
-      const docHeight = document.documentElement.getBoundingClientRect().height;
-      const winHeight = window.innerHeight;
+      if (this.data.display.scroll_percentage > 0) {
+        const docHeight = document.documentElement.getBoundingClientRect().height;
+        const winHeight = window.innerHeight;
 
-      const checkScroll = () => {
-        const scrollPercent = window.pageYOffset / (docHeight - winHeight);
+        const checkScroll = () => {
+          const scrollPercent = window.pageYOffset / (docHeight - winHeight);
 
-        if (scrollPercent * 100 > this.data.display.scroll_percentage) {
-          this.opened = true;
-          window.removeEventListener("scroll", checkScroll);
-        }
-      };
+          if (scrollPercent * 100 > this.data.display.scroll_percentage) {
+            this.showAfterDelay();
+            window.removeEventListener("scroll", checkScroll);
+          }
+        };
 
-      window.addEventListener("scroll", checkScroll);
-    },
-    openFomo: function () {
-      if (this.data.display.scroll_percentage) {
-        this.showAfterScroll();
-      } else if (this.data.display.seconds) {
-        this.showAfterDelay();
+        window.addEventListener("scroll", checkScroll);
       } else {
-        this.opened = true;
+        this.showAfterDelay();
+      }
+    },
+    showOnlyOnFirst: function () {
+      if (this.data.display.show_on_first_visit) {
+        if (window.localStorage.getItem("fomo_first_visit") != 1) {
+          window.localStorage.setItem("fomo_first_visit", 1);
+          this.showAfterScroll();
+        } else {
+          console.warn("am-fomo blocked based on first visit flag");
+        }
+      } else {
+        this.showAfterScroll();
+      }
+    },
+    showOnlyTo: function (type) {
+      if (type == "all") {
+        this.showOnPages();
+      } else if (type == "signed" && this.data.user.id) {
+        this.showOnPages();
+      } else if (type == "unsigned" && this.data.user == null) {
+        this.showOnPages();
+      } else {
+        console.warn("am-fomo blocked based on user");
+      }
+    },
+    showOnPages: function () {
+      if (this.data.display.show_on_home_page) {
+        let currentUrl = window.location.href;
+        currentUrl = currentUrl.replace(window.location.search, "");
+        let siteDomain = currentUrl; ///Hence we didnt get the config yet
+
+        if (currentUrl == siteDomain) {
+          this.showOnCountries();
+        }
+      } else if (`${this.data.display.show_on_pages}`.length) {
+        this.showOnCountries();
+      } else {
+        this.showOnCountries();
+        console.warn("am-fomo blocked based on pages");
+      }
+    },
+    showOnCountries: function () {
+      if (this.data.display.allowed_countries.length) {
+        const ip_country = window.localStorage.getItem("gr_ip_country");
+
+        if (ip_country != null) {
+          this.data.display.allowed_countries.forEach(function (v, k) {
+            this.data.display.allowed_countries[k] = v.toLowerCase();
+          });
+
+          if (this.data.display.allowed_countries.indexOf(ip_country) != -1) {
+            this.showOnlyOnFirst();
+          }
+        }
+      } else {
+        this.showOnlyOnFirst();
       }
     }
   },
@@ -1028,13 +1079,9 @@ const FomoSignup = () => __webpack_require__.e(/* import() | signup */ 1).then(_
       }) => {
         this.fomoType = data.type;
         this.data = data.attributes;
+        this.user = data.user;
         this.setPositioning();
-
-        if (this.data.display.visible_to == "all") {
-          this.openFomo();
-        } else if (this.data.display.visible_to == "signed" && data.user.id) {
-          this.openFomo();
-        } else if (this.data.display.visible_to == "unsigned" && data.user == null) this.openFomo();
+        this.showOnlyTo(this.data.display.visible_to);
       });
     }
   }

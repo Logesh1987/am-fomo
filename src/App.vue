@@ -110,31 +110,32 @@ export default {
       setTimeout(() => (this.opened = true), this.data.display.seconds);
     },
     showAfterScroll: function () {
-      if(this.data.display.scroll_percentage > 0) {
-        const docHeight = document.documentElement.getBoundingClientRect().height;
+      if (this.data.display.scroll_percentage > 0) {
+        const docHeight =
+          document.documentElement.getBoundingClientRect().height;
         const winHeight = window.innerHeight;
         const checkScroll = () => {
           const scrollPercent = window.pageYOffset / (docHeight - winHeight);
           if (scrollPercent * 100 > this.data.display.scroll_percentage) {
-            this.showAfterDelay()
+            this.showAfterDelay();
             window.removeEventListener("scroll", checkScroll);
           }
         };
         window.addEventListener("scroll", checkScroll);
       } else {
-        this.showAfterDelay()
+        this.showAfterDelay();
       }
     },
     showOnlyOnFirst: function () {
-      if(this.data.display.show_on_first_visit) {
+      if (this.data.display.show_on_first_visit) {
         if (window.localStorage.getItem("fomo_first_visit") != 1) {
           window.localStorage.setItem("fomo_first_visit", 1);
-          this.showAfterScroll()
+          this.showAfterScroll();
         } else {
-          console.warn('am-fomo blocked based on first visit flag')
+          console.warn("am-fomo blocked based on first visit flag");
         }
       } else {
-        this.showAfterScroll()
+        this.showAfterScroll();
       }
     },
     showOnlyTo: function (type) {
@@ -145,40 +146,40 @@ export default {
       } else if (type == "unsigned" && this.data.user == null) {
         this.showOnPages();
       } else {
-        console.warn('am-fomo blocked based on user')
+        console.warn("am-fomo blocked based on user");
       }
     },
     showOnPages: function () {
-      if(this.data.display.show_on_home_page) {
+      if (this.data.display.show_on_home_page) {
         let currentUrl = window.location.href;
-        currentUrl = currentUrl.replace(window.location.search, '');
+        currentUrl = currentUrl.replace(window.location.search, "");
         let siteDomain = currentUrl; ///Hence we didnt get the config yet
 
-         if (currentUrl == siteDomain) {
+        if (currentUrl == siteDomain) {
           this.showOnCountries();
-         }
-      } else if(`${this.data.display.show_on_pages}`.length){
+        }
+      } else if (`${this.data.display.show_on_pages}`.length) {
         this.showOnCountries();
       } else {
         this.showOnCountries();
-        console.warn('am-fomo blocked based on pages')
+        console.warn("am-fomo blocked based on pages");
       }
     },
     showOnCountries: function () {
-      if(this.data.display.allowed_countries.length) {
+      if (this.data.display.allowed_countries.length) {
         const ip_country = window.localStorage.getItem("gr_ip_country");
         if (ip_country != null) {
           this.data.display.allowed_countries.forEach(function (v, k) {
             this.data.display.allowed_countries[k] = v.toLowerCase();
           });
           if (this.data.display.allowed_countries.indexOf(ip_country) != -1) {
-            this.showOnlyOnFirst()
+            this.showOnlyOnFirst();
           }
         }
       } else {
-        this.showOnlyOnFirst()
+        this.showOnlyOnFirst();
       }
-    }
+    },
   },
   mounted: function () {
     if (this.preview) {
