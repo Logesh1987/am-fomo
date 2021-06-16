@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target wc --name am-fomo ./src/App.vue",
+    "build": "vue-cli-service build --target wc --name am-fomo ./src/App.vue --mode production",
     "build:inline": "vue-cli-service build --target wc --inline-vue --name am-fomo ./src/App.vue",
     "lint": "vue-cli-service lint --fix"
   },

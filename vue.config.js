@@ -18,5 +18,7 @@ module.exports = {
   chainWebpack: (config) => {
     enableShadowCss(config);
   },
-  publicPath: 'https://logesh1987.github.io/am-fomo/dist/'
+  publicPath: process.env.NODE_ENV === 'production'
+  ? 'https://logesh1987.github.io/am-fomo/dist/'
+  : '/'
 };
