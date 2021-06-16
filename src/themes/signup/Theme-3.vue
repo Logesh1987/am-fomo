@@ -18,7 +18,7 @@
       </section>
       <div class="amfm__fomoSignup_title" v-html="dKeys.congrats_title"></div>
       <div class="amfm__fomoSignup_desc" v-html="dKeys.congrats_txt"></div>
-      <div>
+      <div v-if="this.user.attributes.bonus['coupon'].length">
         <div class="amfm__fomoSignup_button viewDashboard">View Dashboard</div>
         <div class="amfm__fomoSignup_button">Continue Shopping</div>
       </div>
@@ -48,7 +48,7 @@
 <script>
 export default {
   name: "ThemeThree",
-  props: ["iData", "close", "screen"],
+  props: ["iData", "close", "screen", "user"],
   computed: {
     dKeys: function () {
       return this.iData.template.settings;

@@ -2,24 +2,28 @@
   <div>
     <ThemeOne
       :iData="details"
+      :user="user"
       :screen="screen"
       :close="close"
       v-if="details.id_template == 1"
     ></ThemeOne>
     <ThemeTwo
       :iData="details"
+      :user="user"
       :screen="screen"
       :close="close"
       v-if="details.id_template == 2"
     ></ThemeTwo>
     <ThemeThree
       :iData="details"
+      :user="user"
       :screen="screen"
       :close="close"
       v-if="details.id_template == 3"
     ></ThemeThree>
     <ThemeFour
       :iData="details"
+      :user="user"
       :screen="screen"
       :close="close"
       v-if="details.id_template == 4"
@@ -47,7 +51,7 @@ const ThemeFour = () =>
 export default {
   name: "FomoSignup",
   components: { ThemeOne, ThemeTwo, ThemeThree, ThemeFour },
-  props: ["details", "close", "previewMode"],
+  props: ["details", "close", "previewMode", "user"],
   data: function () {
     return {
       showScreen: "before_login",
@@ -59,6 +63,9 @@ export default {
       else return this.showScreen;
     },
   },
+  mounted: function() {
+    if(this.user.id) this.showScreen = 'after_login'
+  }
 };
 </script>
 <style scoped lang="less"></style>

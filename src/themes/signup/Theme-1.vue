@@ -10,7 +10,7 @@
           <span class="flashTitle" v-html="dKeys.congrats_title"></span>
           <span v-html="dKeys.congrats_txt"></span>
         </div>
-        <div class="amfm__signUp_coupon" title="click to copy">
+        <div class="amfm__signUp_coupon" v-if="this.user.attributes.bonus['coupon'].length" title="click to copy">
           <input id="couponCode" type="text" readonly value="AMFM123456" />
           <span class="amfm__fomo_copyCode">
             <svg viewBox="0 0 512 512">
@@ -51,14 +51,14 @@
 <script>
 export default {
   name: "ThemeOne",
-  props: ["iData", "close", "screen"],
+  props: ["iData", "close", "screen", "user"],
   computed: {
     dKeys: function () {
       return this.iData.template.settings;
     },
   },
   mounted: function () {
-    // console.log(this.iData);
+    // console.log(this.user);
   },
 };
 </script>

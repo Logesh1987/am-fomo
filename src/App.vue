@@ -11,6 +11,7 @@
         :close="closeFomo"
         :details="parsedData"
         :previewMode="previewMode"
+        :user="user"
       ></FomoSignup>
       <!-- https://medium.com/@royprins/get-started-with-vue-web-components-593b3d5b3200 -->
       <!-- https://medium.com/tunaiku-tech/your-first-web-component-with-vue-js-3386cffc0b1f -->
@@ -250,6 +251,12 @@ export default {
   }
   .ql-size-small {
     font-size: 0.7em;
+  }
+  .ql-size-large {
+    font-size: 1.3em;
+  }
+  .ql-size-huge {
+    font-size: 1.7em;
   }
 }
 </style>
